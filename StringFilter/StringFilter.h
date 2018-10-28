@@ -35,7 +35,6 @@ private:
 	string GetContentString(const char* path);
 	void SortFilter(vector<string> &v_str);
 	static bool SortStringByLength(string s1, string s2);
-	void InsertHitMap(string f, int i, map<string, vector<int>> &hit_map);
 	void ListMap(map<string, vector<int>> map);
 
 	//fail

@@ -86,7 +86,7 @@ string StringFilter::FilterContent() {
 
 		while (pos != std::string::npos)
 		{
-			InsertHitMap(*it, pos, m_api_matched);
+			m_api_matched[it->c_str()].push_back(pos);
 
 			pos = m_content.find(*it, pos + it->size());
 		}
@@ -181,7 +181,7 @@ void StringFilter::FilterContentUseMap() {
 			if (f.compare(m_content.substr(*i, f.length())) != 0)
 				continue;
 			
-			InsertHitMap(f, *i, m_matched);
+			m_matched[f.c_str()].push_back(*i);
 		}
 	}
 }
@@ -200,22 +200,8 @@ void StringFilter::FilterContentUseCharMap() {
 			if (f.compare(m_content.substr(*i, f.length())) != 0)
 				continue;
 
-			InsertHitMap(f, *i, m_matched);
+			m_matched[f.c_str()].push_back(*i);
 		}
-	}
-}
-
-void StringFilter::InsertHitMap(string f, int i, map<string, vector<int>> &hit_map) {
-
-	auto& hit_it = hit_map.find(f);
-
-	if (hit_it == hit_map.end()) {
-		vector<int> temp;
-		temp.push_back(i);
-		hit_map.insert(pair<string, vector<int>>(f, temp));
-	}
-	else {
-		hit_map[f].push_back(i);
 	}
 }
 
