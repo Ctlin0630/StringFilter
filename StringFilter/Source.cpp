@@ -11,7 +11,7 @@ void main() {
 
 	//SF.ListFilter();
 
-	/*string add_filter;
+	string add_filter;
 	
 	while (true) {
 		cout << "add filter string (\"N\" to finish):" << endl;
@@ -23,11 +23,11 @@ void main() {
 
 		SF.AddFilterString(add_filter);
 	}
-	*/
+	
 	SF.StartFilter();
 
-	/*SF.ListMatchedMap();
+	SF.ListMatchedMap();
 	cout << endl;
-	SF.ListApiMatchedMap();*/
+	SF.ListApiMatchedMap();
 	system("pause");
 }

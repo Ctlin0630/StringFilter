@@ -190,7 +190,16 @@ void StringFilter::FilterContentUseCharMap() {
 
 	for (auto& f : m_filter) {
 
-		auto& it = m_content_map.find(f.at(0));
+		if (m_content_map.count(f.at(0)) > 0) {
+			for (auto& pos : m_content_map[f.at(0)]) {
+
+				if (f.compare(m_content.substr(pos, f.length())) != 0)
+					continue;
+
+				m_matched[f.c_str()].push_back(pos);
+			}
+		}
+		/*auto& it = m_content_map.find(f.at(0));
 
 		if (it == m_content_map.end())
 			continue;
@@ -201,7 +210,7 @@ void StringFilter::FilterContentUseCharMap() {
 				continue;
 
 			m_matched[f.c_str()].push_back(*i);
-		}
+		}*/
 	}
 }
 
