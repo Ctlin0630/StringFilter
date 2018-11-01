@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BM_Alg.h" />
     <ClInclude Include="StringFilter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BM_Alg.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="StringFilter.cpp" />
   </ItemGroup>
