@@ -11,6 +11,12 @@
 
 using namespace std;
 
+struct filter_string{
+	int bmGs[XSIZE];
+	int bmBc[ASIZE];
+	string str;
+};
+
 class BM_Alg
 {
 public:
@@ -19,6 +25,7 @@ public:
 
 	string m_content;
 	vector<string> m_filter;
+	vector<filter_string> m_sfilter;
 
 	void BM( string &p, string &s);
 	void AddFilterString(string str);
@@ -32,5 +39,9 @@ public:
 	void SortFilter(vector<string> &v_str);
 	static bool SortStringByLength(string s1, string s2);
 	string UnicodeToUtf8(string);
+
+	void createFilterTable(vector<string> &p);
+	void FindAndReplaceString( string &s);
+	void BM_Search(filter_string f, string &s);
 };
 

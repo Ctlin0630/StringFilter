@@ -165,3 +165,49 @@ void BM_Alg::BM( string &p, string &s) {
 
 	}
 }
+
+void BM_Alg::createFilterTable(vector<string> &filters) {
+
+	for (int i = 0; i < filters.size(); ++i) {
+
+		filter_string f;
+
+		preBmGs(filters[i].c_str(), filters[i].length(), f.bmGs);
+
+		preBmBc(filters[i].c_str(), filters[i].length(), f.bmBc);
+
+		f.str = filters[i];
+
+		m_sfilter.push_back( f );
+	}
+}
+
+void BM_Alg::FindAndReplaceString( string &s ) {
+	for (auto f : m_sfilter) 
+		BM_Search( f, s );	
+}
+
+void BM_Alg::BM_Search(filter_string f, string &s) {
+
+	int i, j;
+
+	int p_len = f.str.length();
+	int s_len = s.length();
+
+	j = 0;
+	while (j <= s_len - p_len) {
+		for (i = p_len - 1; i >= 0 && f.str[i] == s[i + j]; --i);
+		if (i < 0) {
+			//cout << " pattern occurs at shift = " << j << " " << s.substr(j, p_len).c_str() << endl;;
+			s.replace(j, p_len, "");
+
+			s_len -= p_len;
+
+			j += f.bmGs[0];
+		}
+		else {
+			j += max(f.bmGs[i], f.bmBc[(unsigned char)s[i + j]] - p_len + 1 + i);
+		}
+
+	}
+}
