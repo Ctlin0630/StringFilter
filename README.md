@@ -1,16 +1,19 @@
 # StringFilter
 
-Class StringFilter是用來找出本文內指定字串的位置的工具。
+Class BM_Alg是用來找出本文內指定字串的位置的工具。
 
 < Example >
 
-  StringFilter SF("test.txt","filter.txt");
+  BM_Alg BM("test.txt","filter.txt");
 
-	string add_filter;
-	
-	SF.StartFilter();
+  BM_obj.SortFilter(BM_obj.m_filter);
+  
+  for (auto& f : BM_obj.m_filter) {
+	if (f.length() == 0)
+		continue;
 
-	SF.ListMatchedMap();
+	BM_obj.BM( f, BM_obj.m_content);
+ }
   
 < 格式說明 >
 
@@ -18,13 +21,5 @@ Class StringFilter是用來找出本文內指定字串的位置的工具。
   
 < 時間複雜度分析 >
 
-  假設搜尋字的數量為n，本文長度為m。
-  直接套用string find方式來處理則時間複雜度為O(nm)，如FilterContent funciton。
-  改進構想來自於每個欲搜尋的字串都需要跑過一次本文長度，如果能先將本文利用map建表，那麼每個欲搜尋的字串即可用查表方式來找出可能對應的位置。
-  欲搜尋的字串數量越多，則相對加速越多。
-  
-< 空間複雜度分析 >
-
-  套用string find方式較大的空間只有搜尋字串與本文空間的size。
-  建表方式來說則相對應多了超過一倍的本文空間來建表與儲存字元出現位置。
+  Boyer Moore algorithm 最好O(n/m) 最壞 O(n) 在這邊我們還要再乘上關鍵字的數量
   
