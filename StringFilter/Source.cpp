@@ -71,6 +71,10 @@ void main() {
 
 	BM_obj.createFilterTable( BM_obj.m_filter );
 	
+	string str = u8"new filter string";
+
+	BM_obj.DynamicAddFilterString(str);
+
 	BM_obj.FindAndReplaceString( BM_obj.m_content );
 	system("pause");
 }

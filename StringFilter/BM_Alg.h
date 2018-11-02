@@ -43,5 +43,6 @@ public:
 	void createFilterTable(vector<string> &p);
 	void FindAndReplaceString( string &s);
 	void BM_Search(filter_string f, string &s);
+	void DynamicAddFilterString( string &filter);
 };
 

@@ -182,6 +182,18 @@ void BM_Alg::createFilterTable(vector<string> &filters) {
 	}
 }
 
+void BM_Alg::DynamicAddFilterString(string &filter) {
+	filter_string f;
+
+	preBmGs(filter.c_str(), filter.length(), f.bmGs);
+
+	preBmBc(filter.c_str(), filter.length(), f.bmBc);
+
+	f.str = filter;
+
+	m_sfilter.push_back(f);
+}
+
 void BM_Alg::FindAndReplaceString( string &s ) {
 	for (auto f : m_sfilter) 
 		BM_Search( f, s );	
